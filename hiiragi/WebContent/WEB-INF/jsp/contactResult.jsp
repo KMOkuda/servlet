@@ -1,14 +1,16 @@
+<%@page import="model.Contact"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
 <%
 //リクエストパラメータを取得
 request.setCharacterEncoding("UTF-8");
-String name = request.getParameter("username");
-String furigana = request.getParameter("userfurigana");
-String tel = request.getParameter("usertel");
-String mail = request.getParameter("usermail");
-String comment = request.getParameter("usercomment");
+Contact contact = (Contact)request.getAttribute("contact");
+String name = contact.getName();
+String furigana = contact.getFurigana();
+String tel = contact.getTel();
+String mail = contact.getMail();
+String comment = contact.getComment();
 
 %>
 <head>

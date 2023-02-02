@@ -2,11 +2,14 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Contact;
 
 /**
  * Servlet implementation class ContactServlet
@@ -15,28 +18,48 @@ import javax.servlet.http.HttpServletResponse;
 public class ContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ContactServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	protected void doGet(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("got.");
+
+		request.setCharacterEncoding("UTF-8");
+
+		String name = "名前";
+		String furigana = "フリガナ";
+		String tel = "4444444";
+		String mail = "kk@gmail.com";
+		String comment = "aaaa";
+
+		Contact contact = new Contact(name, furigana, tel, mail, comment);
+
+		request.setAttribute("contact", contact);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/contactResult.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		System.out.println("posted.");
+
+		request.setCharacterEncoding("UTF-8");
+
+		String name = request.getParameter("username");
+		String furigana = request.getParameter("userfurigana");
+		String tel = request.getParameter("usertel");
+		String mail = request.getParameter("usermail");
+		String comment = request.getParameter("usercomment");
+
+		Contact contact = new Contact(name, furigana, tel, mail, comment);
+
+		request.setAttribute("contact", contact);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/contactResult.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

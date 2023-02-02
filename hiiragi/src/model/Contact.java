@@ -9,7 +9,6 @@ public class Contact implements Serializable{
 	private  String mail;
 	private  String comment;
 	public Contact(String name, String furigana, String tel, String mail, String comment) {
-		super();
 		this.name = name;
 		this.furigana = furigana;
 		this.tel = tel;
