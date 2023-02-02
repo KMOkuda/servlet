@@ -18,7 +18,7 @@ import model.Contact;
 public class ContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		System.out.println("got.");
@@ -40,7 +40,7 @@ public class ContactServlet extends HttpServlet {
 
 	}
 
-	protected void doPost(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
