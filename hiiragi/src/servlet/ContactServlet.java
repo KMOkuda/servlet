@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Contact;
+import model.ContactLogic;
 
 /**
  * Servlet implementation class ContactServlet
@@ -57,6 +58,9 @@ public class ContactServlet extends HttpServlet {
 		Contact contact = new Contact(name, furigana, tel, mail, comment);
 
 		request.setAttribute("contact", contact);
+
+		ContactLogic contactLogic = new ContactLogic();
+		contactLogic.postContact(contact);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/contactResult.jsp");
 		dispatcher.forward(request, response);
