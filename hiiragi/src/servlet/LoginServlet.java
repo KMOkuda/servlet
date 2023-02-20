@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Contact;
+import model.ContactLogic;
 import model.Login;
 import model.LoginLogic;
 
@@ -42,6 +45,12 @@ public class LoginServlet extends HttpServlet {
 
 		if (result == true) {
 			request.setAttribute(userId, userId);
+
+			ContactLogic contactLogic = new ContactLogic();
+			List<Contact> contactList = contactLogic.getContactList();
+			
+			request.setAttribute("contactList", contactList);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
 			dispatcher.forward(request, response);
 		} else {

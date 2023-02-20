@@ -1,7 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page import="model.Contact"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja">
-
+<%
+List<Contact> contactList = (List<Contact>) request.getAttribute("contactList");
+%>
 <head>
 <meta charset="UTF-8">
 <title>ひいらぎ不動産：お問い合わせ</title>
@@ -22,7 +27,7 @@
 					<li><a href="point.html">物件選びのポイント</a></li>
 					<li><a href="bukken01.html">おすすめ物件</a></li>
 					<li><a href="company.html">会社案内</a></li>
-					<li>お問い合わせ</li>
+					<li><a href="contact.html">お問い合わせ</li>
 				</ul>
 			</nav>
 		</div>
@@ -33,6 +38,32 @@
 			<li>管理者画面</li>
 		</ol>
 		<h1 class="sabu-h1">管理者画面</h1>
+		<p>お問い合わせ内容</p>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>名前</th>
+				<th>フリガナ</th>
+				<th>電話番号</th>
+				<th>メールアドレス</th>
+				<th>お問い合わせ内容</th>
+			</tr>
+			<%
+			for (Contact contact : contactList) {
+			%>
+			<tr>
+				<td><%=contact.getId()%></td>
+				<td><%=contact.getName()%></td>
+				<td><%=contact.getFurigana()%></td>
+				<td><%=contact.getTel()%></td>
+				<td><%=contact.getMail()%></td>
+				<td><%=contact.getComment()%></td>
+			</tr>
+
+			<%
+			}
+			%>
+		</table>
 	</article>
 	<footer>
 		<small>Copyright &copy; 2015 Hiiragi Real Estate. All Rights

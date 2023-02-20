@@ -3,7 +3,10 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Contact;
 
@@ -45,6 +48,48 @@ public class ContactDAO {
 			e.printStackTrace();
 			System.out.println("ドライバのロードに失敗");
 			return false;
+		}
+	}
+
+	public List<Contact> read() {
+		try {
+			Class.forName("org.h2.Driver");
+			// データベースへ接続
+			try (Connection conn = DriverManager.getConnection(
+					JDBC_URL, DB_USER, DB_PASS)) {
+
+				List<Contact> contactList = new ArrayList<Contact>();
+
+				// SELECT文を準備
+				String sql = "SELECT * FROM CONTACT";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				ResultSet rs = pStmt.executeQuery();
+
+				while(rs.next()) {
+					Contact contact = new Contact();
+
+					contact.setId(Integer.parseInt(rs.getString("id")));
+					contact.setName(rs.getString("name"));
+					contact.setFurigana(rs.getString("furigana"));
+					contact.setTel(rs.getString("tel"));
+					contact.setMail(rs.getString("mail"));
+					contact.setComment(rs.getString("comment"));
+
+					contactList.add(contact);
+				}
+
+				return contactList;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("ドライバのロードに失敗");
+
+			return null;
 		}
 	}
 }

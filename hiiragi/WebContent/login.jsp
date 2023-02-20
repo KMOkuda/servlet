@@ -22,7 +22,7 @@
 					<li><a href="point.html">物件選びのポイント</a></li>
 					<li><a href="bukken01.html">おすすめ物件</a></li>
 					<li><a href="company.html">会社案内</a></li>
-					<li>お問い合わせ</li>
+					<li><a href="contact.html">お問い合わせ</li>
 				</ul>
 			</nav>
 		</div>
@@ -30,7 +30,7 @@
 	<article class="page">
 		<ol>
 			<li><a href="index.html">トップ</a>&nbsp;&nbsp;&gt;</li>
-			<li>お問い合わせ</li>
+			<li>管理者ログイン画面</li>
 		</ol>
 		<h1 class="sabu-h1">管理者ログイン画面</h1>
 		<form action="/hiiragi/LoginServlet" method="post">
